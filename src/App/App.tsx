@@ -1,46 +1,18 @@
 import React from 'react';
-import Header from '../components/Header';
-import Nav from '../components/Nav';
 import './index.css';
+import Main from '../components/Main';
+import {BrowserRouter as Router} from 'react-router-dom';
+import AuthenicationRoutes from '../routes/AuthenticationRoutes';
+
 
 function App() {
   return (
+    <Router>
     <div className="App">
-   <Header />
-
-<div className="container-fluid">
-  <div className="row">
- <Nav />
-    <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <h2>Section title</h2>
-      <div className="table-responsive">
-        <table className="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>random</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td>text</td>
-            </tr>
-           
-          </tbody>
-        </table>
+        <AuthenicationRoutes />
+        <Main />
       </div>
-    </main>
-  </div>
-</div>
-
-    </div>
+    </Router>
   );
 }
 
