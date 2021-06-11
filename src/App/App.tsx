@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
-import logo from '../logo.svg';
 import './index.css';
 
 function App() {
