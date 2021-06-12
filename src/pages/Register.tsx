@@ -24,7 +24,7 @@ class Register extends Component {
             email: this.email,
             password: this.password,
             password_confirmation: this.passwordConfirm
-        }, {withCredentials: true});
+        });
 
         this.setState({
             redirect: true
