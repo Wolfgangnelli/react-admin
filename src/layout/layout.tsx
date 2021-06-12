@@ -4,10 +4,12 @@ import Nav from '../components/Nav';
 import axios from 'axios';
 import {API_AUTHENTICATED_USER} from '../config/config';
 import {Redirect} from 'react-router-dom';
+import { User } from '../models/user';
 
 
 const Layout = (props: any) => {
-    const [redirect, setredirect] = useState(false)
+    const [redirect, setredirect] = useState(false);
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
          (
@@ -15,6 +17,7 @@ const Layout = (props: any) => {
                 try {
                     const {data} = await axios.get(`${API_AUTHENTICATED_USER}`)
                     console.log(data);
+                    setUser(data);
                 } catch (error) {
                     setredirect(true);
                 }
@@ -30,7 +33,7 @@ const Layout = (props: any) => {
 
     return (
     <div>
-        <Header />
+        <Header user={user} />
             <div className="container-fluid">
                 <div className="row">
                 <Nav />
