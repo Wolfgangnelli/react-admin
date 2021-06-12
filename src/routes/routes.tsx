@@ -6,6 +6,8 @@ const Routes = () => {
     return (
     <Switch>
         <Route path="/" exact component={Users} />
+      {/*   <Route path="/profile"  /> */}
+
     </Switch>
     )
 }
