@@ -15,7 +15,7 @@ const submit = async (e:SyntheticEvent) => {
 await axios.post(`${API_ADMIN_LOGIN}`, {
   email,
   password
-}, {withCredentials: true}).then(res => console.log(res.data)).catch(er => console.log(er));
+}).then(res => console.log(res.data)).catch(er => console.log(er));
 
 setRedirect(true);
 

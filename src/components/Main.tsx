@@ -3,8 +3,9 @@ import Routes from '../routes/routes';
 
 
 const Main = () => {
+
     return (
-        <Routes />
+            <Routes />   
     )
 }
 
