@@ -1,7 +1,6 @@
 import React, {Component, SyntheticEvent} from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import { tokenToString } from 'typescript';
 
 class Register extends Component {
     firstName = '';
@@ -18,24 +17,13 @@ class Register extends Component {
     submit = async (e: SyntheticEvent) => {
         e.preventDefault();
 
-        let config = {
-            mode: 'cors',
-            credentials: 'include',
-            headers: {
-                'Accept': 'application/json', 
-                'Content-Type': 'application/json',
-                'withCredentials': true,
-                'Access-Control-Allow-Origin': '*',
-            }
-        }; 
-
         await axios.post("http://localhost:8000/api/admin/register", {
             first_name: this.firstName,
             last_name: this.lastName,
             email: this.email,
             password: this.password,
             password_confirmation: this.passwordConfirm
-        }, config).then(res => console.log(res));
+        }).then(res => console.log(res));
 
         this.setState({
             redirect: true
