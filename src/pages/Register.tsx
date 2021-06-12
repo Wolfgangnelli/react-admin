@@ -1,6 +1,7 @@
 import React, {Component, SyntheticEvent} from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import {API_ADMIN_REGISTER} from '../config/config';
 
 class Register extends Component {
     firstName = '';
@@ -17,13 +18,13 @@ class Register extends Component {
     submit = async (e: SyntheticEvent) => {
         e.preventDefault();
 
-        await axios.post("http://localhost:8000/api/admin/register", {
+        await axios.post(`${API_ADMIN_REGISTER}`, {
             first_name: this.firstName,
             last_name: this.lastName,
             email: this.email,
             password: this.password,
             password_confirmation: this.passwordConfirm
-        }).then(res => console.log(res));
+        }, {withCredentials: true});
 
         this.setState({
             redirect: true
