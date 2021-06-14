@@ -35,14 +35,14 @@ const Header = (props: {user: User | null}) => {
    <CSSTransition in={showUserMenu} timeout={400} classNames="user-list-transition" unmountOnExit appear>
 
             <div className="z-10 absolute right-1 bg-yellow-300 rounded">
-          <ul className="navbar-nav flex flex-cols">
-              <li>
-            <Link to={`${match.url}/profile`} className="text-white self-center hover:bg-yellow-500 w-full py-2 px-4">
+          <ul className="flex flex-col">
+              <li  className="text-white self-center hover:bg-yellow-500 w-full py-2 px-4">
+            <Link to={`${match.url}/profile`}>
             <span className="uppercase">{props.user.first_name}</span> profile
             </Link>
               </li>
-              <li>
-            <Link to="/login" onClick={async () => await axios.post(`${API_ADMIN_LOGOUT}`)} className="nav-item text-nowrap py-2 px-4 self-center hover:bg-yellow-500">
+              <li className="nav-item text-nowrap py-2 px-4 self-center hover:bg-yellow-500">
+            <Link to="/login" onClick={async () => await axios.post(`${API_ADMIN_LOGOUT}`)}>
                 Sign out
             </Link>            
               </li>
