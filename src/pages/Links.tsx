@@ -37,7 +37,7 @@ const Links = () => {
 
     return (
         <Layout>
-            <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-10">
             <h2 className="font-bold text-4xl text-blue-500 py-4">Ambassador links</h2>
             <TableContainer component={Paper}>
                 <Table className={classes.table}>

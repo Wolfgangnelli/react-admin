@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
 import axios from 'axios';
-import {API_AUTHENTICATED_USER} from '../config/config';
+import {API_ADMIN} from '../config/config';
 import {Redirect} from 'react-router-dom';
 import { User } from '../models/user';
 
@@ -15,7 +15,7 @@ const Layout = (props: any) => {
          (
             async () => {
                 try {
-                    const {data} = await axios.get(`${API_AUTHENTICATED_USER}`)
+                    const {data} = await axios.get(`${API_ADMIN}user`)
                     setUser(data);
                 } catch (error) {
                     setredirect(true);

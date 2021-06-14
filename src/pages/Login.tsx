@@ -1,6 +1,6 @@
 import React, {SyntheticEvent, useState} from 'react';
 import axios from 'axios';
-import {API_ADMIN_LOGIN} from '../config/config';
+import {API_ADMIN} from '../config/config';
 import {Redirect} from 'react-router-dom';
 
 const Login = () => {
@@ -12,10 +12,10 @@ const [redirect, setRedirect] = useState(false);
 const submit = async (e:SyntheticEvent) => {
   e.preventDefault();
 
-await axios.post(`${API_ADMIN_LOGIN}`, {
+await axios.post(`${API_ADMIN}login`, {
   email,
   password
-}).then(res => console.log(res.data)).catch(er => console.log(er));
+});
 
 setRedirect(true);
 

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { User } from "../models/user";
 import {Link, useRouteMatch} from 'react-router-dom';
 import axios from "axios";
-import {API_ADMIN_LOGOUT} from '../config/config';
+import {API_ADMIN} from '../config/config';
 import { CSSTransition } from "react-transition-group";
 
 
@@ -41,7 +41,7 @@ const Header = (props: {user: User | null}) => {
                 </Link>
                   </li>
                   <li  className="text-white hover:bg-yellow-500 hover:text-yellow-600 w-full py-2 px-2 rounded">
-                <Link to="/login" onClick={async () => await axios.post(`${API_ADMIN_LOGOUT}`)} className="w-full">
+                <Link to="/login" onClick={async () => await axios.post(`${API_ADMIN}logout`)} className="w-full">
                     Sign out
                 </Link>            
                   </li>
