@@ -17,12 +17,14 @@ const Header = (props: {user: User | null}) => {
       <ul className="navbar-nav px-3 flex flex-row">
         {props.user ? (
         <Link to={`${match.url}/profile`} className="text-white self-center">
+          <li>
           <a className="nav-link" href="#">
         <span className="text-green-500 text-2xl">
           <i className="fa fa-user-circle">
           </i>
           </span><span className="uppercase">{props.user.first_name}</span>
         </a>
+          </li>
         </Link>) : null             
         }
         <Link to="/login" onClick={async () => await axios.post(`${API_ADMIN_LOGOUT}`)} className="nav-item text-nowrap ml-4 self-center">
