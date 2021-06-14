@@ -28,9 +28,11 @@ const Header = (props: {user: User | null}) => {
         </Link>) : null             
         }
         <Link to="/login" onClick={async () => await axios.post(`${API_ADMIN_LOGOUT}`)} className="nav-item text-nowrap ml-4 self-center">
+          <li>
           <a className="nav-link" href="#">
             Sign out
           </a>
+          </li>
         </Link>
       </ul>
     </header>
