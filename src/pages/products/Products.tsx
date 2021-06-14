@@ -5,6 +5,7 @@ import { Product } from '../../models/product';
 import Layout from '../../layout/layout';
 import {Table, TableContainer, TableCell, TableHead, TableRow, TableBody, TableFooter, Paper, TablePagination, Button} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
+import {Link, useRouteMatch} from 'react-router-dom';
 /* import Modal from 'react-modal';
 const Zoom = require("react-reveal/Zoom"); */
 
@@ -21,6 +22,7 @@ const Products = () => {
     const [page, setPage] = useState<number>(0);
     const [perPage, setPerPage] = useState<number>(10);
     const classes = useStyles();
+    let match = useRouteMatch();
 
     useEffect(() => {
         (
@@ -52,9 +54,11 @@ const Products = () => {
             <Button 
             variant="contained" 
             color="default" 
-            className="float-right mx-1 my-1" 
-            href="/prod">
-                New Product</Button>
+            className="float-right mx-1 my-1" >
+                <Link to={`${match.url}/create`}>
+                New Product
+                </Link>
+                </Button>
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
