@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { User } from "../models/user";
 import {Link, useRouteMatch} from 'react-router-dom';
 import axios from "axios";
 import {API_ADMIN_LOGOUT} from '../config/config';
+import { CSSTransition } from "react-transition-group";
+
 
 
 const Header = (props: {user: User | null}) => {
+  const [showUserMenu, setShowUserMenu] = useState(false);
  let match = useRouteMatch(); 
+
+ useEffect(() => {
+  if(showUserMenu) {
+    setShowUserMenu(false);
+  }
+ }, [])
 
 
   return (
@@ -14,27 +23,40 @@ const Header = (props: {user: User | null}) => {
       <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
         Company name
       </a>
-      <ul className="navbar-nav px-3 flex flex-row">
-        {props.user ? (
-        <Link to={`${match.url}/profile`} className="text-white self-center">
-          <li>
-          <a className="nav-link" href="#">
+        {props.user ? 
+      <div className="mr-6 relative">
+        <button onClick={() => setShowUserMenu(!showUserMenu)}>
         <span className="text-green-500 text-2xl">
           <i className="fa fa-user-circle">
           </i>
-          </span><span className="uppercase">{props.user.first_name}</span>
-        </a>
-          </li>
-        </Link>) : null             
-        }
-        <Link to="/login" onClick={async () => await axios.post(`${API_ADMIN_LOGOUT}`)} className="nav-item text-nowrap ml-4 self-center">
-          <li>
-          <a className="nav-link" href="#">
-            Sign out
-          </a>
-          </li>
-        </Link>
-      </ul>
+          </span>
+        </button>
+        {showUserMenu ? 
+   <CSSTransition in={showUserMenu} timeout={400} classNames="user-list-transition" unmountOnExit appear>
+
+            <div className="z-10 absolute right-1 bg-yellow-300 rounded">
+          <ul className="navbar-nav flex flex-cols">
+            <Link to={`${match.url}/profile`} className="text-white self-center hover:bg-yellow-500 w-full py-2 px-4">
+              <li>
+              <a className="nav-link" href="#">
+            <span className="uppercase">{props.user.first_name}</span> profile
+            </a>
+              </li>
+            </Link>
+            <Link to="/login" onClick={async () => await axios.post(`${API_ADMIN_LOGOUT}`)} className="nav-item text-nowrap py-2 px-4 self-center hover:bg-yellow-500">
+              <li>
+              <a className="nav-link" href="#">
+                Sign out
+              </a>
+              </li>
+            </Link>            
+          </ul> 
+        </div> 
+   </CSSTransition>
+            : null }        
+      </div>
+      : null
+    }
     </header>
   );
 };
