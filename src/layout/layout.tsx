@@ -36,8 +36,8 @@ const Layout = (props: any) => {
             <div className="container-fluid">
                 <div className="row">
                 <Nav />
+                </div>             
                 {props.children}
-                </div>
            </div>
     </div>
     )
