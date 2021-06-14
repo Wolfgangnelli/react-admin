@@ -4,7 +4,10 @@ import {API_ADMIN} from '../../config/config';
 import { Product } from '../../models/product';
 import Layout from '../../layout/layout';
 import {Table, TableContainer, TableCell, TableHead, TableRow, TableBody, TableFooter, Paper, TablePagination, Button} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles'
+import {makeStyles} from '@material-ui/core/styles';
+/* import Modal from 'react-modal';
+const Zoom = require("react-reveal/Zoom"); */
+
 
 const useStyles = makeStyles({
     table: {
@@ -36,13 +39,22 @@ const Products = () => {
         }
     }
 
+  
+
     return (
         <Layout>
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-10">
             <h2 className="font-bold text-4xl text-blue-500 py-4">Products</h2>
        {products ?
        (
+           <>
         <TableContainer component={Paper}>
+            <Button 
+            variant="contained" 
+            color="default" 
+            className="float-right mx-1 my-1" 
+            href="/prod">
+                New Product</Button>
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
@@ -83,6 +95,7 @@ const Products = () => {
                 </TableFooter>
             </Table>
      </TableContainer>
+     </>
         ) :
         (<div>Loading...</div>)
         }
