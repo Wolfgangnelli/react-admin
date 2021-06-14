@@ -12,7 +12,11 @@ const Nav = () => {
                 Users
               </NavLink>
             </li>
-          
+            <li className="nav-item">
+              <NavLink to="/products" activeClassName="selected">
+                Products
+              </NavLink>
+            </li>
           </ul>
         </div>
       </nav>
