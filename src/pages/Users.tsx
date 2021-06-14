@@ -3,7 +3,7 @@ import Layout from '../layout/layout';
 import axios from 'axios';
 import {API_ADMIN} from '../config/config';
 import { User } from '../models/user';
-import {Table, TableBody, TableCell, TableHead, TableRow, TableContainer, Paper } from '@material-ui/core';
+import {Table, TableBody, TableCell, TableHead, TableRow, TableContainer, Paper, TableFooter, TablePagination } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -15,6 +15,8 @@ const useStyles = makeStyles({
 
 const Users = () => {
     const [users, setUsers] = useState<User[]>([]);
+    const [rowsPerPage, setRowsPerPage] = useState<number>(10);
+    const [page, setPage] = useState<number>(0);
     const classes = useStyles();
 
 useEffect(() => {
@@ -25,6 +27,8 @@ useEffect(() => {
         }
     )();
 }, []);
+
+
 
     return ( 
         <Layout>
@@ -41,7 +45,7 @@ useEffect(() => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {users.map(user => {
+                    {users.slice(page*rowsPerPage, (page+1)*rowsPerPage).map(user => {
                         return (
                             <TableRow key={user.id}>
                             <TableCell>{user.id}</TableCell>
@@ -49,10 +53,16 @@ useEffect(() => {
                             <TableCell>{user.email}</TableCell>
                             <TableCell></TableCell>
                             </TableRow>
-                        )
-                    }
+                        )}
                     )}              
                 </TableBody>
+                <TableFooter>
+                    <TablePagination count={users.length} 
+                    page={page} 
+                    onChangePage={(e, newPage) => setPage(newPage)} 
+                    rowsPerPage={rowsPerPage} 
+                    rowsPerPageOptions={[]} />
+                </TableFooter>
                 </Table>
             </TableContainer>
             </main>
