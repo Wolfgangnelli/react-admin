@@ -16,7 +16,6 @@ const Layout = (props: any) => {
             async () => {
                 try {
                     const {data} = await axios.get(`${API_AUTHENTICATED_USER}`)
-                    console.log(data);
                     setUser(data);
                 } catch (error) {
                     setredirect(true);

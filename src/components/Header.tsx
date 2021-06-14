@@ -33,20 +33,19 @@ const Header = (props: {user: User | null}) => {
         </button>
         {showUserMenu ? 
    <CSSTransition in={showUserMenu} timeout={400} classNames="user-list-transition" unmountOnExit appear>
-
-            <div className="z-10 absolute right-1 bg-yellow-300 rounded">
-          <ul className="flex flex-col">
-              <li  className="text-white self-center hover:bg-yellow-500 w-full py-2 px-4">
-            <Link to={`${match.url}/profile`}>
-            <span className="uppercase">{props.user.first_name}</span> profile
-            </Link>
-              </li>
-              <li className="nav-item text-nowrap py-2 px-4 self-center hover:bg-yellow-500">
-            <Link to="/login" onClick={async () => await axios.post(`${API_ADMIN_LOGOUT}`)}>
-                Sign out
-            </Link>            
-              </li>
-          </ul> 
+            <div className="z-20 absolute right-1 bg-yellow-300 rounded" style={{width: "120px"}}>
+              <ul className="flex flex-col text-white">
+                  <li  className="text-white hover:bg-yellow-500 hover:text-yellow-600 w-full py-2 px-2 rounded">
+                <Link to={`${match.url}/profile`} className="w-full">
+                <span className="uppercase">{props.user.first_name}</span> profile
+                </Link>
+                  </li>
+                  <li  className="text-white hover:bg-yellow-500 hover:text-yellow-600 w-full py-2 px-2 rounded">
+                <Link to="/login" onClick={async () => await axios.post(`${API_ADMIN_LOGOUT}`)} className="w-full">
+                    Sign out
+                </Link>            
+                  </li>
+              </ul> 
         </div> 
    </CSSTransition>
             : null }        

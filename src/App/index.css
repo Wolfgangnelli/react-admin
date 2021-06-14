@@ -29966,7 +29966,7 @@ body {
 .user-list-transition-enter,
 .user-list-transition-appear {
   top: 32px;
-  width: auto;
+  width: 120px;
   color: transparent;
   z-index: 20;
 }
@@ -29974,7 +29974,7 @@ body {
 .user-list-transition-enter-active,
 .user-list-transition-appear-active {
   top: 32px;
-  width: auto;
+  width: 120px;
   max-height: max-content;
   z-index: 20;
   transition: all 400ms;
@@ -29983,13 +29983,13 @@ body {
 .user-list-transition-exit {
   top: 32px;
   max-height: max-content;
-  width: auto;
+  width: 120px;
   z-index: 20;
 }
 
 .user-list-transition-exit-active {
   top: 32px;
-  width: auto;
+  width: 120px;
   color: transparent;
   z-index: 20;
   transition: all 400ms;

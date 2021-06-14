@@ -9,9 +9,7 @@ axios.defaults.withCredentials = true;
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <App />,
   document.getElementById('root')
 );
 
