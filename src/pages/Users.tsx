@@ -3,8 +3,9 @@ import Layout from '../layout/layout';
 import axios from 'axios';
 import {API_ADMIN} from '../config/config';
 import { User } from '../models/user';
-import {Table, TableBody, TableCell, TableHead, TableRow, TableContainer, Paper, TableFooter, TablePagination } from '@material-ui/core';
+import {Table, TableBody, TableCell, TableHead, TableRow, TableContainer, Paper, TableFooter, TablePagination, Button } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
+import {Link, useRouteMatch} from 'react-router-dom';
 
 const useStyles = makeStyles({
     table: {
@@ -18,6 +19,7 @@ const Users = () => {
     const [rowsPerPage, setRowsPerPage] = useState<number>(10);
     const [page, setPage] = useState<number>(0);
     const classes = useStyles();
+    let match = useRouteMatch();
 
 useEffect(() => {
     (
@@ -51,7 +53,13 @@ useEffect(() => {
                             <TableCell>{user.id}</TableCell>
                             <TableCell>{user.first_name} {user.last_name}</TableCell>
                             <TableCell>{user.email}</TableCell>
-                            <TableCell></TableCell>
+                            <TableCell>
+                                <Button variant="contained" color="primary">
+                                <Link to={`${match.url}/${user.id}/links`}>
+                                View
+                                </Link>
+                                </Button>
+                            </TableCell>
                             </TableRow>
                         )}
                     )}              
