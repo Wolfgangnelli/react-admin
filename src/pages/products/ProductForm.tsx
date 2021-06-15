@@ -40,7 +40,9 @@ const ProductForm = () => {
 
     return (
         <Layout>
-           <form onSubmit={handleForm} className="mt-12">
+            <div className="mt-12">
+            <h2 className="text-2xl font-bold text-green-600">Create New Product</h2>
+           <form onSubmit={handleForm} className="pt-8">
                <div className="mb-3">
                    <TextField label="Title" variant="outlined" onChange={e => setTitle(e.target.value)} />
                </div>
@@ -55,6 +57,7 @@ const ProductForm = () => {
                </div>
                <Button type="submit" variant="contained" color="primary">Submit</Button>
            </form>
+            </div>
         </Layout>
     )
 }
