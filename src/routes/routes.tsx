@@ -5,6 +5,7 @@ import Links from '../pages/Links';
 import Orders from '../pages/Orders';
 import ProductForm from '../pages/products/ProductForm';
 import Products from '../pages/products/Products';
+import Profile from '../pages/Profile';
 import Users from '../pages/Users';
 
 const Routes = () => {
@@ -17,7 +18,7 @@ const Routes = () => {
       <Route path="/products/create" component={ProductForm} />
       <Route path="/products/:id/edit" component={ProductForm} />
       <Route path="/orders" component={Orders} />
-      {/*   <Route path="/profile"  /> */}
+      <Route path="/profile" component={Profile}  /> 
 
     </Switch>
     )

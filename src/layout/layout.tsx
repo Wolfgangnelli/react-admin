@@ -7,9 +7,11 @@ import {Redirect} from 'react-router-dom';
 import { User } from '../models/user';
 
 
+
 const Layout = (props: any) => {
     const [redirect, setredirect] = useState(false);
     const [user, setUser] = useState<User | null>(null);
+    
 
     useEffect(() => {
          (
@@ -17,6 +19,7 @@ const Layout = (props: any) => {
                 try {
                     const {data} = await axios.get(`${API_ADMIN}user`)
                     setUser(data);
+                   /*  localStorage.setItem("auth", JSON.stringify(data)); */
                 } catch (error) {
                     setredirect(true);
                 }
@@ -31,15 +34,15 @@ const Layout = (props: any) => {
  
 
     return (
-    <div>
-        <Header user={user} />
-            <div className="container-fluid max-w-screen-2xl mx-auto">
-                <div className="row">
-                <Nav />
-                {props.children}
-                </div>             
-           </div>
-    </div>
+        <div>
+            <Header user={user} />
+                <div className="container-fluid max-w-screen-2xl mx-auto">
+                    <div className="row">
+                    <Nav />
+                    {props.children}
+                    </div>             
+            </div>
+        </div>
     )
 }
 

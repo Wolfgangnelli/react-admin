@@ -17,6 +17,11 @@ const Header = (props: {user: User | null}) => {
   }
  }, [])
 
+ const logout = async () => {
+  await axios.post(`${API_ADMIN}logout`);
+  localStorage.removeItem("auth");
+ }
+
 
   return (
     <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -36,13 +41,13 @@ const Header = (props: {user: User | null}) => {
             <div className="z-20 absolute right-1 bg-yellow-300 rounded" style={{width: "120px"}}>
               <ul className="flex flex-col text-white">
                   <li  className="text-white hover:bg-yellow-500 hover:text-yellow-600 w-full py-2 px-2 rounded">
-                <Link to={`${match.url}/profile`} className="w-full">
-                <span className="uppercase">{props.user.first_name}</span> profile
+                <Link to={`/profile`} className="w-full">
+                <span className="uppercase">{props.user.first_name}</span> Profile
                 </Link>
                   </li>
                   <li  className="text-white hover:bg-yellow-500 hover:text-yellow-600 w-full py-2 px-2 rounded">
-                <Link to="/login" onClick={async () => await axios.post(`${API_ADMIN}logout`)} className="w-full">
-                    Sign out
+                <Link to="/login" onClick={logout} className="w-full">
+                    Logout
                 </Link>            
                   </li>
               </ul> 
