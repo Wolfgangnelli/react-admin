@@ -5,6 +5,7 @@ import { Product } from '../../models/product';
 import Layout from '../../layout/layout';
 import {Table, TableContainer, TableCell, TableHead, TableRow, TableBody, TableFooter, Paper, TablePagination, Button} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
+import {ToggleButtonGroup} from '@material-ui/lab';
 import {Link, useRouteMatch} from 'react-router-dom';
 /* import Modal from 'react-modal';
 const Zoom = require("react-reveal/Zoom"); */
@@ -80,11 +81,15 @@ const Products = () => {
                                 <TableCell>{product.description}</TableCell>
                                 <TableCell>{product.price}</TableCell>
                                 <TableCell>
-                                    <Button 
-                                    variant="contained" 
-                                    color="secondary"
-                                    onClick={() => deleteProduct(product.id)}>
-                                         Delete</Button>
+                                    <ToggleButtonGroup>
+                                        <Button 
+                                        variant="contained" 
+                                        color="secondary"
+                                        onClick={() => deleteProduct(product.id)}>
+                                        Delete
+                                        </Button>
+                                        <Button variant="contained" color="primary"><Link to={`${match.url}/${product.id}/edit`}>Edit</Link></Button>
+                                    </ToggleButtonGroup>
                                 </TableCell>
                             </TableRow>
                         )
