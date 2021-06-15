@@ -27,7 +27,7 @@ if(redirect) {
 }
 
     return (
-       <main className="form-signin">
+         <main className="form-signin col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-10">
         <form onSubmit={submit}>
           <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
       

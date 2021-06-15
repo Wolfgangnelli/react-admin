@@ -2,6 +2,7 @@ import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import { RedirectToUsers } from '../components/RedirectToUsers';
 import Links from '../pages/Links';
+import Orders from '../pages/Orders';
 import ProductForm from '../pages/products/ProductForm';
 import Products from '../pages/products/Products';
 import Users from '../pages/Users';
@@ -15,6 +16,7 @@ const Routes = () => {
       <Route path="/products" exact component={Products} />
       <Route path="/products/create" component={ProductForm} />
       <Route path="/products/:id/edit" component={ProductForm} />
+      <Route path="/orders" component={Orders} />
       {/*   <Route path="/profile"  /> */}
 
     </Switch>
