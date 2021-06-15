@@ -33,7 +33,7 @@ const Layout = (props: any) => {
     return (
     <div>
         <Header user={user} />
-            <div className="container-fluid">
+            <div className="container-fluid max-w-screen-2xl mx-auto">
                 <div className="row">
                 <Nav />
                 {props.children}
