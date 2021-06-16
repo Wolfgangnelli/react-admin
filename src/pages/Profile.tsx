@@ -1,11 +1,14 @@
-import React, {useState, useEffect, SyntheticEvent} from 'react';
+import React, {useState, useEffect, SyntheticEvent, Dispatch} from 'react';
 import {Button} from '@material-ui/core';
 import Layout from '../layout/layout';
 import axios from 'axios';
 import {API_ADMIN} from '../config/config';
+import { connect } from 'react-redux';
+import { User } from '../models/user';
+import { setUser } from '../redux/actions/user';
 
 
-const Profile = () => {
+const Profile = (props: {user: User, setUser: any}) => {
     const [first_name, setFirst_name] = useState("");
     const [last_name, setLast_name] = useState("");
     const [email, setEmail] = useState("");
@@ -14,27 +17,22 @@ const Profile = () => {
   
 
     useEffect(() => {
-        (
-            async () => {
-                const {data} = await axios.get(`${API_ADMIN}user`);
-                   
-                setFirst_name(data.first_name);
-                setLast_name(data.last_name);
-                setEmail(data.email);
-            }
-        )();
-    }, [])
+                setFirst_name(props.user.first_name);
+                setLast_name(props.user.last_name);
+                setEmail(props.user.email);
+    }, [props.user])
 
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
 
         if(e.currentTarget.getAttribute('id')) {           
-                    await axios.put(`${API_ADMIN}users/info`, {
+                const {data} = await axios.put(`${API_ADMIN}users/info`, {
                         first_name,
                         last_name,
                         email
-                    });         
+                    });       
+                    props.setUser(data);
         } else {           
                     await axios.put(`${API_ADMIN}users/password`, {
                         passsword,
@@ -83,4 +81,14 @@ const Profile = () => {
     )
 }
 
-export default Profile;
+const mapStateToProps = (state: {user: any}) => {
+    return {
+        user: state.user.user
+    }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
+        setUser: (user: User) => dispatch(setUser(user))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
