@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from "react";
 import { User } from "../models/user";
-import {Link, useRouteMatch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from "axios";
 import {API_ADMIN} from '../config/config';
 import { CSSTransition } from "react-transition-group";
+import { connect } from "react-redux";
 
 
 
-const Header = (props: {user: User | null}) => {
+const Header = (props: {user: User | null }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
- let match = useRouteMatch(); 
 
  useEffect(() => {
   if(showUserMenu) {
@@ -35,6 +35,7 @@ const Header = (props: {user: User | null}) => {
           <i className="fa fa-user-circle">
           </i>
           </span>
+          <span className="pl-1 text-green-500 uppercase">{props.user?.first_name}</span>
         </button>
         {showUserMenu ? 
    <CSSTransition in={showUserMenu} timeout={400} classNames="user-list-transition" unmountOnExit appear>
@@ -42,7 +43,7 @@ const Header = (props: {user: User | null}) => {
               <ul className="flex flex-col text-white">
                   <li  className="text-white hover:bg-yellow-500 hover:text-yellow-600 w-full py-2 px-2 rounded">
                 <Link to={`/profile`} className="w-full">
-                <span className="uppercase">{props.user.first_name}</span> Profile
+                 Profile
                 </Link>
                   </li>
                   <li  className="text-white hover:bg-yellow-500 hover:text-yellow-600 w-full py-2 px-2 rounded">
@@ -61,4 +62,10 @@ const Header = (props: {user: User | null}) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state: {user: any}) => {
+  return {
+    user: state.user.user
+  }
+}
+
+export default connect(mapStateToProps)(Header);

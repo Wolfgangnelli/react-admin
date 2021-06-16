@@ -1,16 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Dispatch} from 'react';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
 import axios from 'axios';
 import {API_ADMIN} from '../config/config';
 import {Redirect} from 'react-router-dom';
 import { User } from '../models/user';
+import {connect} from 'react-redux';
+import { setUser } from '../redux/actions/user';
 
 
 
 const Layout = (props: any) => {
     const [redirect, setredirect] = useState(false);
-    const [user, setUser] = useState<User | null>(null);
     
 
     useEffect(() => {
@@ -18,7 +19,7 @@ const Layout = (props: any) => {
             async () => {
                 try {
                     const {data} = await axios.get(`${API_ADMIN}user`)
-                    setUser(data);
+                    props.setUser(data);
                    /*  localStorage.setItem("auth", JSON.stringify(data)); */
                 } catch (error) {
                     setredirect(true);
@@ -35,7 +36,7 @@ const Layout = (props: any) => {
 
     return (
         <div>
-            <Header user={user} />
+            <Header />
                 <div className="container-fluid max-w-screen-2xl mx-auto">
                     <div className="row">
                     <Nav />
@@ -46,4 +47,12 @@ const Layout = (props: any) => {
     )
 }
 
-export default Layout;
+const mapStateToProps = (state: {user: any}) => ({
+        user: state.user.user
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<any>) => ({ 
+        setUser: (user: User) => dispatch(setUser(user))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
